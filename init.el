@@ -12,6 +12,75 @@
  '(global-linum-mode 1)
 )
 
+;;******************** SMEX ********************
+;;(require 'smex) ; Not needed if you use package.el
+;;(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                  ; when Smex is auto-initialized on its first run.
+;;(global-set-key (kbd "M-x") 'smex)
+;;(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;;******************** HELM ********************
+;;(require 'helm)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+
+;;******************** Run TESTS ********************
+(defun mycompile ()
+  (interactive)
+  (setq current-prefix-arg '(4))
+  (call-interactively 'compile))
+
+;;(global-set-key (kdb "<f9>") 'mycompile)
+
+;; Pane switch with shift+arrows
+
+;; use Shift+arrow_keys to move cursor around split panes
+(windmove-default-keybindings)
+;; when cursor is on edge, move to the other side, as in a toroidal space
+(setq windmove-wrap-around t )
+
+
+;; Tidy up
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; HideShow mode
+
+(defun toggle-hiding (column)
+  (interactive "P")
+  (if hs-minor-mode
+      (if (condition-case nil
+              (hs-toggle-hiding)
+            (error t))
+          (hs-show-all))
+    (toggle-selective-display column)))
+
+(defun toggle-selective-display (column)
+  (interactive "P")
+  (set-selective-display
+   (or column
+       (unless selective-display
+         (1+ (current-column))))))
+
+(load-library "hideshow")
+(global-set-key (kbd "C-+") 'toggle-hiding)
+(global-set-key (kbd "C-\\") 'toggle-selective-display)
+(add-hook 'c-mode-common-hook   'hs-minor-mode)
+(add-hook 'c++-mode-common-hook   'hs-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'java-mode-hook       'hs-minor-mode)
+(add-hook 'lisp-mode-hook       'hs-minor-mode)
+(add-hook 'perl-mode-hook       'hs-minor-mode)
+(add-hook 'sh-mode-hook         'hs-minor-mode)
+(add-hook 'python-mode-hook     'hs-minor-mode)
+;; Hide the comments too when you do a 'hs-hide-all'
+(setq hs-hide-comments nil)
+;; Set whether isearch opens folded comments, code, or both
+;; where x is code, comments, t (both), or nil (neither)
+(setq hs-isearch-open 'x)
+
 ;; Disable toolbars crap
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -40,6 +109,14 @@
 
 
 ;;              PYTHON
+
+
+;; Virtualenv
+;; (require 'virtualenvwrapper)
+;; (venv-initialize-interactive-shells) ;; if you want interactive shell support
+;; (venv-initialize-eshell) ;; if you want eshell support
+;; (setq venv-location "~/.virtualenvs")
+
 
 ;; JEDI
 (add-hook 'python-mode-hook 'jedi:setup)
