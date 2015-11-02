@@ -111,7 +111,9 @@
 ;; (venv-initialize-eshell) ;; if you want eshell support
 ;; (setq venv-location "~/.virtualenvs")
 
-
+(add-hook 'python-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command) "nosetests")))
 ;; JEDI
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
