@@ -13,28 +13,22 @@
 )
 
 ;;******************** SMEX ********************
-;;(require 'smex) ; Not needed if you use package.el
-;;(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
-;;(global-set-key (kbd "M-x") 'smex)
-;;(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
-;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;******************** HELM ********************
 ;;(require 'helm)
-(global-set-key (kbd "M-x") 'helm-M-x)
+;;(global-set-key (kbd "M-x") 'helm-M-x)
 
 
 ;;******************** Run TESTS ********************
-(defun mycompile ()
-  (interactive)
-  (setq current-prefix-arg '(4))
-  (call-interactively 'compile))
 
-;;(global-set-key (kdb "<f9>") 'mycompile)
+(global-set-key (kbd "<f9>") 'recompile)
 
-;; Pane switch with shift+arrows
+
+;;******************** Pane switch with shift+arrows ********************
 
 ;; use Shift+arrow_keys to move cursor around split panes
 (windmove-default-keybindings)
@@ -81,35 +75,35 @@
 ;; where x is code, comments, t (both), or nil (neither)
 (setq hs-isearch-open 'x)
 
-;; Disable toolbars crap
+
+;;******************** Disable toolbars crap ********************
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Package repos
+;;******************** Package repos ********************
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.org/packages/")))
 
-;; Themes
+;;******************** Themes ********************
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-;; IDO
-(require 'ido)
-(ido-mode t)
-
-
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;; Monokai
 (load-theme 'monokai t)
 
-;; Rebinds
+
+;;******************** IDO ********************
+(ido-mode t)
+
+
+;;******************** Flycheck ********************
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;;******************** Rebinds ********************
 (global-set-key (kbd "C-f") 'goto-line) ; Ctrl+f
 
 
-;;              PYTHON
-
+;;******************** PYTHON ********************
 
 ;; Virtualenv
 ;; (require 'virtualenvwrapper)
@@ -129,6 +123,9 @@
 	    (setq-default tab-width 4)
 	    (setq-default python-indent 4)
 	    ))
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
