@@ -85,6 +85,10 @@
 			 ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.org/packages/")))
 
+;; Auto update packages ()
+;;(auto-package-update-mayevery 7 days)
+;;(setq auto-package-update-delete-old-versions t)
+
 ;;******************** Themes ********************
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ;; Monokai
