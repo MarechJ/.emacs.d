@@ -1,0 +1,7 @@
+*.elc
+smex-items
+.python-environments/
+auto-save-list/
+ac-comphist.dat
+*~
+\#*\#
