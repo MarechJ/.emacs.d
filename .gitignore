@@ -5,3 +5,6 @@ auto-save-list/
 ac-comphist.dat
 *~
 \#*\#
+ido.last
+eshell/
+elpa/archives

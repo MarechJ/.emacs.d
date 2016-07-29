@@ -18,6 +18,17 @@
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;;******************** ispell with hunspell ********************
+;; Workaround for OSX + homebrew
+;; (setenv "DICTIONARY" "en_GB")
+;; (setenv "LANG" "en_GB")
+;; (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+;; (setq exec-path (append exec-path '("/usr/local/bin/")))
+;; ;; Set default dict to hunspell
+;; (setq-default ispell-program-name "hunspell")
+;; ;; auto start flyspell
+;; (flyspell-mode t)
+
 ;;******************** HELM ********************
 ;;(require 'helm)
 ;;(global-set-key (kbd "M-x") 'helm-M-x)
