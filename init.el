@@ -1,16 +1,75 @@
 ;; Builtins
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+(setq exec-path (append exec-path '("/usr/local/bin")))
+(setq gc-cons-threshold 100000000) ; ie 100mb, default is 800kb
+(package-initialize)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
  '(auto-save-default nil)
  '(column-number-mode 1)
+ '(compilation-message-face (quote default))
+ '(custom-safe-themes
+   (quote
+    ("d9046dcd38624dbe0eb84605e77d165e24fdfca3a40c3b13f504728bab0bf99d" default)))
+ '(fci-rule-color "#49483E")
+ '(global-linum-mode 1)
+ '(highlight-changes-colors ("#FD5FF0" "#AE81FF"))
+ '(highlight-tail-colors
+   (quote
+    (("#49483E" . 0)
+     ("#67930F" . 20)
+     ("#349B8D" . 30)
+     ("#21889B" . 50)
+     ("#968B26" . 60)
+     ("#A45E0A" . 70)
+     ("#A41F99" . 85)
+     ("#49483E" . 100))))
  '(inhibit-startup-screen t)
  '(linum-format "%d ")
+ '(magit-diff-use-overlays nil)
+ '(package-selected-packages
+   (quote
+    (jedi jedi-core nginx-mode yaml-mode virtualenvwrapper terraform-mode smex rw-hunspell rjsx-mode pyvirtualenv python-docstring pungi nose markdown-preview-mode jinja2-mode ipython ido-yes-or-no helm-ispell helm flymd flycheck-pyflakes ein-mumamo dockerfile-mode csharp-mode color-theme-sanityinc-solarized color-theme auto-package-update auctex-latexmk ac-ispell)))
  '(show-paren-mode t)
- '(global-linum-mode 1)
-)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
 ;;******************** SMEX ********************
 (global-set-key (kbd "M-x") 'smex)
@@ -102,7 +161,7 @@
 ;;(auto-package-update-mayevery 7 days)
 ;;(setq auto-package-update-delete-old-versions t)
 
-;;******************** Themes ********************
+;;******************** Themes *******************
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ;; Monokai
 (load-theme 'monokai t)
