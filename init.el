@@ -8,10 +8,16 @@
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+
+;; (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+
+;; (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq gc-cons-threshold 100000000) ; ie 100mb, default is 800kb
 (package-initialize)
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -44,7 +50,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (jedi jedi-core nginx-mode yaml-mode virtualenvwrapper terraform-mode smex rw-hunspell rjsx-mode pyvirtualenv python-docstring pungi nose markdown-preview-mode jinja2-mode ipython ido-yes-or-no helm-ispell helm flymd flycheck-pyflakes ein-mumamo dockerfile-mode csharp-mode color-theme-sanityinc-solarized color-theme auto-package-update auctex-latexmk ac-ispell)))
+    (exec-path-from-shell jedi jedi-core nginx-mode yaml-mode virtualenvwrapper terraform-mode smex rw-hunspell rjsx-mode pyvirtualenv python-docstring pungi nose markdown-preview-mode jinja2-mode ipython ido-yes-or-no helm-ispell helm flymd flycheck-pyflakes ein-mumamo dockerfile-mode csharp-mode color-theme-sanityinc-solarized color-theme auto-package-update auctex-latexmk ac-ispell)))
  '(show-paren-mode t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -173,7 +179,6 @@
 
 ;;******************** Flycheck ********************
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
 
 ;;******************** Rebinds ********************
 (global-set-key (kbd "C-f") 'goto-line) ; Ctrl+f
